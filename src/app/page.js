@@ -9,11 +9,11 @@ import CategoryFeatureSection from "@/components/home-components/CategoryFeature
 
 export async function generateMetadata({params,searchParams},parent){
 
-  
+  const previousImages = (await parent).openGraph?.images || []
   return({
     title:'Wisaale Shop',
     openGraph:{
-        images:['/icons/website_icon.png']
+        images:['/temp_pics/Bags.jpeg',previousImages]
     }
   })
 }
