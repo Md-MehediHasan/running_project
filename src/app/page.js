@@ -7,16 +7,7 @@ import CategoryFeatureSection from "@/components/home-components/CategoryFeature
 
 
 
-export async function generateMetadata({params,searchParams},parent){
 
-  const previousImages = (await parent).openGraph?.images || []
-  return({
-    title:'Wisaale Shop',
-    openGraph:{
-        images:['/temp_pics/Bags.jpeg','https://www.google.com/url?sa=i&url=https%3A%2F%2Fpixabay.com%2Fimages%2Fsearch%2Fnature%2F&psig=AOvVaw2a1zMclArbExPUvBHlfSA2&ust=1720332921065000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCIiOntnhkYcDFQAAAAAdAAAAABAE']
-    }
-  })
-}
 
 export default function App() {
   const products =[1,3,4,5]
