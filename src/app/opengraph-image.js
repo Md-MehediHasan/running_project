@@ -25,7 +25,7 @@ export default async function Image({ params }) {
           justifyContent: 'center',
         }}
       >
-       <img src='https://www.google.com/url?sa=i&url=https%3A%2F%2Fpixabay.com%2Fimages%2Fsearch%2Fnature%2F&psig=AOvVaw2a1zMclArbExPUvBHlfSA2&ust=1720332921065000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCIiOntnhkYcDFQAAAAAdAAAAABAE' />
+       <img src='' />
       </div>
     ),
     {

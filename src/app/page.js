@@ -7,7 +7,16 @@ import CategoryFeatureSection from "@/components/home-components/CategoryFeature
 
 
 
+export async function generateMetadata({params,searchParams},parent){
 
+  const previousImages = (await parent).openGraph?.images || []
+  return({
+    title:'Wisaale Shop',
+    openGraph:{
+        images:['https://media.istockphoto.com/id/1696167872/photo/aerial-view-of-forest-at-sunset-on-the-background-of-mountains-in-dolomites.jpg?s=1024x1024&w=is&k=20&c=sfRAnSjXlDxAAAMZ0ZtYG5GpetUCOqETKyVc0Oz6kyU=']
+    }
+  })
+}
 
 export default function App() {
   const products =[1,3,4,5]
