@@ -1,7 +1,10 @@
 
-
-import BestOfferProducts from "@/components/home-components/BestOfferProducts";
 import CategoryFeatureSection from "@/components/home-components/CategoryFeatureSection";
+import TargetFive from "@/components/home-components/TargetFive";
+import MidCarousel from'../components/home-components/MidCarrousel'
+import GeneralPolicy from '@/components/home-components/GeneralPolicy'
+
+
 
 
 
@@ -19,7 +22,7 @@ export async function generateMetadata({params,searchParams},parent){
 }
 
 export default function App() {
-  const products =[1,3,4,5]
+  const products =[1,2,3,4,5,6,7]
 
   const FeaturedCategory=[
     {
@@ -99,15 +102,54 @@ export default function App() {
         {
           img:'/temp_pics/pressure_cooker.jpg',
           name:'pressure-cooker',
-        }
+        },
+        
       ]  
     }
+  ]
+
+  const ItemForCarousel=[
+        {
+          img:'/temp_pics/kitchen_sink.jpg',
+          name:'kitchen-sink',
+        },
+        {
+          img:'/temp_pics/gas_stove.jpg',
+          name:'gas_stove',
+        },
+        {
+          img:'/temp_pics/non_stick.jpg',
+          name:'non_stick',
+        },
+        {
+          img:'/temp_pics/pressure_cooker.jpg',
+          name:'pressure-cooker',
+        },
+        {
+          img:'/temp_pics/speaker.png',
+          name:'speaker',
+        },
+        {
+          img:'/temp_pics/smartwatch.jpg',
+          name:'smartwatch',
+        },
+        {
+          img:'/temp_pics/pendrive.jpg',
+          name:'pendrive',
+        },
+        {
+          img:'/temp_pics/headphone.jpeg',
+          name:'headphone',
+        }
   ]
 
   return (
       <section className="mt-1 lg:mt-5">  
         <CategoryFeatureSection FeaturedCategory={FeaturedCategory}/>
-        <BestOfferProducts products={products}/>
+        <TargetFive products={products} headerTitle={'Best Offer Products'} BrowseSimilar/>
+        <TargetFive products={products} headerTitle={'Best Selling Products'} BrowseSimilar animation/>
+         <MidCarousel carouselItems={ItemForCarousel} title={'For You'}/>
+         <GeneralPolicy />
       </section>
   );
 }

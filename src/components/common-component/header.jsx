@@ -1,3 +1,5 @@
+
+
 'use client'
 
 import { useNavContext } from "@/contexts/NavContexts";
@@ -7,18 +9,15 @@ import ProductCatMenu from "./CategoryMenu";
 import AnimatedPlaceholder from "./AnimatedPlaceholder";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretDown, faCaretUp, faCartShopping, faClose, faLocationDot, faMessage, faSearch, faUser } from "@fortawesome/free-solid-svg-icons";
-
-
 import PreferedLanguageSelector from "./PreferedLangSelector";
 import { CartAddedItem } from "./CartAddedItem";
+import MobileSearch from '@/components/common-component/MobileSearch'
 
 
-const Headers = () => {
-  const {isUserMenuVisible, setIsuserMenuVisible, isMobileSearchVisible,setMobileSearchVisible, isCartVisible, setIsCartVisible,isSticky,setIsSticky,scrollHeight,setScrollHeight } = useNavContext()
-  const [isCatMenuVisible,setIsCatMenuVisible]=useState(false)
-  const [isLangSelectorOpen,setIsLangSelectorOpen]=useState(false)
+const Headers=({children}) =>{
+  const {isUserMenuVisible, setIsuserMenuVisible, isMobileSearchVisible,setMobileSearchVisible, isCartVisible, setIsCartVisible,isCatMenuVisible,setIsCatMenuVisible,isLangSelectorOpen,setIsLangSelectorOpen,isSticky,setIsSticky,scrollHeight,setScrollHeight } = useNavContext()
+
  
-  
  
   const cartItems=[1,2,3,4,5]
  
@@ -42,104 +41,16 @@ const Headers = () => {
   },
   ]
 
-  const productCategories=[
-    { id:1,
-      title:'Fashion Items',
-      sub_cat:[
-        {
-          title:'T-shirt',
-          href:'/fashion-items/t-shirt'
-        },
-        {
-          title:'Pant',
-          href:'/fashion-items/pants'
-        },
-        {
-          title:'Formal Dress',
-          href:'/fashion-items/formal-dress'
-        },
-        {
-          title:'Trousers',
-          href:'/fashion-items/trousers'
-        },
-        {
-          title:'Panjabi',
-          href:'/fashion-items/panjabi'
-        }
-        
-      ]
-    },
-    { id:2,
-      title:'Electronics',
-      sub_cat:[
-        {
-          title:'Phone Cover',
-          href:'/electronics/phone-cover'
-        },
-        {
-          title:'Earphone',
-          href:'/electronics/earphone'
-        },
-        {
-          title:'Charger',
-          href:'/electronics/charger'
-        },
-        {
-          title:'Speaker',
-          href:'/electronics/Speaker'
-        },
-        {
-          title:'Smart Watch',
-          href:'/electronics/phone-cover'
-        }
-        
-      ]
-    },
-    {id:3,
-      title:'Beauty & Health',
-      sub_cat:[
-        {
-          title:'Hair Oil',
-          href:'/beauty&health/hair-oil'
-        },
-        {
-          title:'Face Wash',
-          href:'/beauty&health/face-wash'
-        },
-        {
-          title:'Perfume',
-          href:'/beauty&health/hair-oil'
-        },
-         
-      ]
-    },
-    {
-      id:4,
-      title:'Kitchen Ware',
-      sub_cat:[
-        {
-          title:'Fry Pan',
-          href:'/kitchen-ware/fry-pan'
-        },
-        {
-          title:'Induction Coocker',
-          href:'/kitchen-ware/induction-coocker'
-        },
-        {
-          title:'Gas Stove',
-          href:'/kitchen-ware/gas-stove'
-        },
-         
-      ]
-    },
-  ]
+
+
+
+
+
 
   function mobileSearchVisibler(){
     setMobileSearchVisible(true)
   }
-  function mobileSearchHiddener(){
-    setMobileSearchVisible(false)
-  }
+ 
 
  
  async function  CartVisibler(){
@@ -185,7 +96,7 @@ const Headers = () => {
 
   return (
     <header className={`${isSticky?'sticky-nav':"relative"} max-w-screen max-h-screen top-0 lg:h-20 text-white`}>
-      <nav className='p-3 lg:p-1 md:px-8 grid grid-cols-1 gap-y-1  z-50  items-center bg-gradient-to-tr from-slate-800 to-neutral-800 shadow-md text-md relative w-screen'>
+      <nav className='p-3 lg:p-2 md:px-8 grid grid-cols-1 gap-y-1  z-50  items-center bg-gradient-to-tr from-slate-800 to-neutral-800 shadow-md text-md relative w-screen'>
         {/* Upper row */ }
         <div className='hidden  lg:grid lg:grid-cols-12 items-center text-sm w-full'>
           <div className='grid col-span-4 justify-self-start'>
@@ -201,17 +112,12 @@ const Headers = () => {
 
         <div className="grid grid-cols-12 gap-x-8 text-green-500 items-center ">
           {/* Logo */}
-            <Link href={'/'} className="list-none  col-span-2"><img src="/icons/logo.svg" className="w-full mx-2 md:w-1/4"/></Link>
+            <Link href={'/'} className="list-none  col-span-2"><img src="/icons/ws_logo.png" className="w-full mx-2 md:w-1/4"/></Link>
             {/* Product category */}
             <div className="select-none " onMouseOver={()=>setIsCatMenuVisible(true)} onMouseOutCapture={()=>setIsCatMenuVisible(false)}>
-              <li className="list-none flex space-x-1 items-center cursor-pointer" ><div>Categories</div><FontAwesomeIcon icon={isCatMenuVisible?faCaretUp:faCaretDown} size="md"/></li>
+              <li className="list-none flex space-x-1 items-center cursor-pointer" ><div>Categories</div><FontAwesomeIcon icon={faCaretDown} size="md" className={`transition-transform  duration-500 ease-in-ease-out rotate-${isCatMenuVisible? '180':'0'}`}/></li>
               {isCatMenuVisible &&
-                <div className="absolute  w-[50vw] lg:w-1/5 ">
-                  <div className="triangle h-[20px] w-4 bg-slate-500"></div>
-                  <div className="rounded-sm  max-h-[40vh] -mt-2 overflow-y-auto d-block bg-slate-500 text-black p-4">
-                    <ProductCatMenu categories={productCategories}/>
-                  </div>
-                </div>
+               children
               }
             </div>
             {/* Animated placeholder */}
@@ -227,7 +133,7 @@ const Headers = () => {
                 {/* Prefered Language Selector */}
               <div className="hidden lg:block" onMouseOver={ () => setIsLangSelectorOpen(true) } onMouseOutCapture={ () => setIsLangSelectorOpen(false) }>
 
-                <li className="list-none  flex space-x-1 items-center cursor-pointer" ><div>BN/EN</div>  <FontAwesomeIcon icon={ isLangSelectorOpen ? faCaretUp : faCaretDown } size="md" /></li>
+                <li className="list-none  flex space-x-1 items-center cursor-pointer" ><div>BN/EN</div>  <FontAwesomeIcon icon={  faCaretUp } size="md"  className={`transition-transform duration-300 ease-in-ease-out rotate-${isLangSelectorOpen?'0':'180'}`}/></li>
 
                 { isLangSelectorOpen &&
                   <div className="absolute">
@@ -274,15 +180,10 @@ const Headers = () => {
             </div>
         </div>
         {/* Mobile searchbar */}
-          {isMobileSearchVisible &&<div className="absolute p-8 mt-3 left-0 w-full bg-gradient-to-tr text-green-500 from-slate-800 to-neutral-800">
-          <div className="mt-8 text-right">
-            <button onClick={mobileSearchHiddener} className="hover:bg-green-300 hover:text-white p-2 rounded-sm"><FontAwesomeIcon icon={faClose}/></button>
-          </div>
-          <div className="w-full mt-2">
-          <AnimatedPlaceholder placeholderValue={['Search By Fashion Item','Search By Grocery','Search By Electronics','Search By Kitchen Ware']} type={'small-device-search'}/>
-          </div>
-        </div>}
-
+          {isMobileSearchVisible &&
+          <MobileSearch />
+          }
+           
           {/* Cart item show */}
 
         

@@ -11,7 +11,7 @@ export default function ScrollToTop(){
         body.scrollTo(0,0)
       }
     return(
-        <div className={`absolute top-80 cursor-pointer hover:opacity-80 right-4 ${isSticky?'block':'hidden'} p-2 bg-green-500 rounded-sm`} style={{zIndex:50}} onClick={scrollToTop}>
+        <div className={`absolute bottom-12 cursor-pointer hover:opacity-80 right-4 ${isSticky?'block':'hidden'} p-2 bg-gradient-to-tr from-slate-800 to-neutral-800 text-white rounded-sm`} style={{zIndex:50}} onClick={scrollToTop}>
         <FontAwesomeIcon icon={faAngleUp} size="md" />
         </div> 
     )

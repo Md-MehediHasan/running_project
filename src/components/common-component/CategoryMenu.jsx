@@ -25,8 +25,8 @@ export default function ProductCatMenu({ categories }) {
 
     return (
         <>
-            { categories.map(item => (
-                <div className="select-none relative">
+            { categories.map((item,index) => (
+                <div key={index} className="select-none relative">
                     <li>{ item.title } <span className="absolute right-2 cursor-pointer"><FontAwesomeIcon icon={ IsOpened(item.id) ? faMinus : faPlus } size="sm" onClick={ IsOpened(item.id) ? () => subMenuHiddener(item.id) : () => subMenuOpener(item.id) } /></span></li>
                     { IsOpened(item.id) &&
                         <div className="px-4">
